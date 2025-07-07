@@ -1,0 +1,28 @@
+{
+    "container_orchestrator": {
+      "aws": "ecs-ec2",
+      "azure": "aks",
+      "gcp": "gke"
+    },
+    "managed_postgres_db": {
+      "aws": "rds-postgres",
+      "azure": "azure-db-postgres",
+      "gcp": "cloud-sql-postgres"
+    },
+    "load_balancer": {
+      "aws": "alb",
+      "azure": "application-gateway",
+      "gcp": "cloud-load-balancing"
+    },
+    "monitoring": {
+      "aws": "cloudwatch",
+      "azure": "azure-monitor",
+      "gcp": "stackdriver"
+    },
+    "dns": {
+      "aws": "route53",
+      "azure": "azure-dns",
+      "gcp": "cloud-dns"
+    }
+  }
+  

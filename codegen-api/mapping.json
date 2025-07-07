@@ -1,0 +1,18 @@
+{
+    "container_orchestrator": {
+      "aws": "../../service-catalog/aws/ecs-ec2",
+      "azure": "../../service-catalog/azure/aks",
+      "gcp": "../../service-catalog/gcp/gke"
+    },
+    "managed_postgres_db": {
+      "aws": "../../service-catalog/aws/rds-postgres",
+      "azure": "../../service-catalog/azure/azure-db-postgres",
+      "gcp": "../../service-catalog/gcp/cloud-sql-postgres"
+    },
+    "load_balancer": {
+      "aws": "../../service-catalog/aws/alb",
+      "azure": "../../service-catalog/azure/app-gateway",
+      "gcp": "../../service-catalog/gcp/cloud-lb"
+    }
+  }
+  
