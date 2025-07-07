@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>CloudCompose</title></head>
+<body>
+  <h2>🛠 CloudCompose</h2>
+  <form method="post" action="/generate">
+    Cloud: <input name="cloud" value="aws"><br>
+    Project name: <input name="project_name" value="demo-app"><br>
+    <p>Example params:</p>
+    Cluster name: <input name="cluster_name" value="my-ecs-cluster"><br>
+    DB identifier: <input name="db_identifier" value="mydb"><br>
+    <button type="submit">Generate Terraform</button>
+  </form>
+</body>
+</html>

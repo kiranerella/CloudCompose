@@ -1,3 +1,14 @@
-__pycache__/
-.env
+
+# Python
 venv/
+__pycache__/
+*.pyc
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Generated files
+codegen-api/generated/

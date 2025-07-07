@@ -1,4 +1,5 @@
 import json
+import os
 
 def generate_main_tf(user_input):
     cloud = user_input["cloud"]
@@ -10,35 +11,27 @@ def generate_main_tf(user_input):
         mapping = json.load(f)
 
     lines = []
+    lines.append(f'provider "{cloud}" {{\n  region = var.aws_region\n}}\n')
 
-    # Add provider block
-    lines.append('provider "{}" {{\n  region = var.aws_region\n}}\n'.format(cloud))
-
-    # Loop over services
     for svc in services:
         svc_type = svc["type"]
         params = svc["params"]
-
         module_source = mapping[svc_type][cloud]
 
-        module_block = f'module "{svc_type}" {{'
-        module_block += f'\n  source = "{module_source}"'
+        block = f'module "{svc_type}" {{'
+        block += f'\n  source = "{module_source}"'
+        block += '\n  tags = {\n    "Project" = "' + project + '"\n  }'
 
-        # Add project tag as default
-        module_block += '\n  tags = {{\n    "Project" = "' + project + '"\n  }}'
-
-        for key, value in params.items():
-            if isinstance(value, list):
-                module_block += f'\n  {key} = {json.dumps(value)}'
+        for k, v in params.items():
+            if isinstance(v, list):
+                block += f'\n  {k} = {json.dumps(v)}'
             else:
-                module_block += f'\n  {key} = "{value}"'
+                block += f'\n  {k} = "{v}"'
+        block += '\n}\n'
+        lines.append(block)
 
-        module_block += '\n}\n'
-
-        lines.append(module_block)
-
-    # Write to file
+    os.makedirs("generated", exist_ok=True)
     with open("generated/main.tf", "w") as f:
         f.write("\n".join(lines))
 
-    return {"status": "success", "details": "main.tf generated"}
+    return "\n".join(lines)
