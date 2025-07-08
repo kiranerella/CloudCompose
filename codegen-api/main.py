@@ -83,3 +83,7 @@ def form_post(
         "est_cost": est_cost,
         "default_region": default_region
     })
+
+@app.get("/", response_class=HTMLResponse)
+def form_get(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
