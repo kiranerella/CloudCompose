@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CloudCompose</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+    h2 { color: #2d6cdf; }
+    select, input, button { margin: 5px; padding: 5px; }
+    .section { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <h2>🛠 CloudCompose – Multi‑Cloud Infra Generator</h2>
+  <form method="post" action="/generate">
+    <div class="section">
+      <label>🌩 Choose Cloud Platform:</label>
+      <select name="cloud">
+        <option value="aws">AWS</option>
+        <option value="azure">Azure</option>
+        <option value="gcp">GCP</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label>📦 Choose Service:</label>
+      <select name="service_type">
+        <option value="container_orchestrator">Container Orchestrator (ECS / AKS / GKE)</option>
+        <option value="managed_postgres_db">Managed Postgres DB</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label>📝 Project Name:</label>
+      <input name="project_name" value="demo-app">
+    </div>
+
+    <div class="section">
+      <label>🔧 Service Params:</label><br>
+      Cluster Name: <input name="cluster_name" value="demo-cluster"><br>
+      DB Identifier: <input name="db_identifier" value="mydb">
+    </div>
+
+    <button type="submit">🚀 Generate Terraform Code</button>
+  </form>
+</body>
+</html>

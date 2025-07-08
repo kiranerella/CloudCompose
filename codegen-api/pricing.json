@@ -1,0 +1,15 @@
+{
+    "aws": {
+      "ecs-ec2": 25,
+      "rds-postgres": 120
+    },
+    "azure": {
+      "aks": 30,
+      "postgres": 100
+    },
+    "gcp": {
+      "gke": 28,
+      "postgres": 90
+    }
+  }
+  
