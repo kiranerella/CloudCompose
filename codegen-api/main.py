@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from cloudpricing import get_aws_price, get_azure_price, get_gcp_price
+
 from utils import generate_main_tf
 import json
 
@@ -63,10 +65,17 @@ def form_post(
         })
 
     # dynamic cost & region logic block (should add api block for realtime processing ) ***
-    est_cost = sum(
-        pricing[cloud].get(s["type"], 0)
-        for s in services
-    )
+    from cloudpricing import get_aws_price, get_azure_price, get_gcp_price
+
+    est_cost = 0.0
+    for s in services:
+        if cloud == "aws":
+            est_cost += get_aws_price(s["type"])
+        elif cloud == "azure":
+            est_cost += get_azure_price(s["type"])
+        elif cloud == "gcp":
+            est_cost += get_gcp_price(s["type"])
+
     default_region = regions[cloud][0]  # e.g., "us-east-1"
 
     # Generate Terraform code
