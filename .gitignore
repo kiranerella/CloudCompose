@@ -12,3 +12,5 @@ __pycache__/
 
 # Generated files
 codegen-api/generated/
+
+cloudpricing_cache*
