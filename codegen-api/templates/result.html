@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head><title>Generated Terraform</title></head>
+<!-- <head><title>Generated Terraform</title></head>
 <body>
   <h2>✅ Generated Terraform Code</h2>
   <p><strong>Estimated monthly cost:</strong> ${{ est_cost }}</p>
   <p><strong>Default deployment region:</strong> {{ default_region }}</p>
   <pre>{{ tf_code }}</pre>
   <a href="/">← Back</a>
-</body>
+</body> -->
+<h1>Terraform Code Generated</h1>
+{% for cloud, code in tf_outputs.items() %}
+  <h2>{{ cloud.upper() }} (Est cost: ${{ cost_per_cloud[cloud] }} /mo)</h2>
+  <pre>{{ code }}</pre>
+{% endfor %}
+
 </html>
